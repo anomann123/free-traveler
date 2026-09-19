@@ -1,0 +1,92 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    name: quality
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+
+      # task:contract / screen:contract가 `python`으로 실행되는데, ubuntu-latest 기본
+      # 이미지에는 `python3`만 있고 `python` 심볼릭 링크가 없을 수 있다. setup-python이
+      # `python` 명령을 확실히 PATH에 올려준다(요청 목록엔 없지만 8·9단계가 실행되려면
+      # 반드시 필요한 보강 Step).
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Format check
+        run: npm run format:check
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Unit tests
+        run: npm run test:unit
+
+      - name: Task contract check
+        run: npm run task:contract
+
+      - name: Screen contract check (ci mode)
+        run: npm run screen:contract -- --mode=ci
+
+      - name: Build
+        run: npm run build
+
+  public-smoke:
+    name: public-smoke
+    needs: quality
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      # 로그인 없이 가능한 공개 Smoke(E2E-001~005)만 실행한다. Supabase Secret이
+      # 없어도 통과해야 하므로 이 Job은 어떤 Supabase/인증 환경변수도 참조하지
+      # 않는다. 인증 Smoke(auth-smoke.spec.ts, E2E-006~007)는 여기서 실행하지
+      # 않으며 GitHub Actions 필수 Gate로 두지 않는다.
+      - name: Public E2E smoke (Chromium)
+        run: npm run test:e2e:public
+
+      - name: Upload Playwright report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7

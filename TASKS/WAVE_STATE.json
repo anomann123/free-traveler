@@ -1,6 +1,6 @@
 {
   "schema_version": "traveler-wave-state-v1",
-  "generated_at": "2026-09-19T07:05:36Z",
+  "generated_at": "2026-09-19T11:43:22Z",
   "waves": [
     {
       "wave_id": "W01",
@@ -10,9 +10,29 @@
         "CMP-SHARED-TOAST",
         "DATA-DESTINATIONS"
       ],
-      "status": "pending",
+      "status": "blocked",
       "checkpoint_required": false,
-      "checkpoint_result": null
+      "checkpoint_result": null,
+      "tasks": [
+        {
+          "task_id": "CMP-SHARED-HEADER-FOOTER",
+          "status": "BLOCKED_DIRTY_TREE",
+          "updated_at": "2026-09-19T00:00:00Z",
+          "note": "Expected Files 밖 파일(.claude/commands/run-wave.md, .gitignore, TASKS/WAVE_STATE.json, next.config.ts, package-lock.json, package.json, src/app/layout.tsx 및 .github/, .prettierignore, .prettierrc.json, playwright.config.ts, scripts/check_screen_contract.py, tests/, vitest.config.ts)에 커밋되지 않은 변경이 있어 착수 보류."
+        },
+        {
+          "task_id": "CMP-SHARED-TOAST",
+          "status": "PENDING",
+          "updated_at": null,
+          "note": ""
+        },
+        {
+          "task_id": "DATA-DESTINATIONS",
+          "status": "PENDING",
+          "updated_at": null,
+          "note": ""
+        }
+      ]
     },
     {
       "wave_id": "W02",

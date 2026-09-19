@@ -1,0 +1,14 @@
+# 요구사항·Task·Wave·디자인 문서는 Prettier 검사 대상에서 제외한다.
+docs/
+TASKS/
+design-reference/
+
+# 빌드 산출물·의존성·잠금 파일
+node_modules/
+.next/
+out/
+build/
+coverage/
+package-lock.json
+*.tsbuildinfo
+next-env.d.ts
