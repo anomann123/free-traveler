@@ -1,0 +1,369 @@
+{
+  "schema_version": "traveler-screen-route-v1",
+  "framework": "nextjs-app-router",
+  "source_documents": [
+    "docs/03_UI_COVERAGE_ANALYSIS.md",
+    "docs/04_UIUX_PLAN.md",
+    "docs/STITCH_VALIDATION_REPORT.md",
+    "design-reference/D-001/DESIGN.md",
+    "design-reference/UI_CONTRACT.md"
+  ],
+  "screens": [
+    {
+      "screen_id": "SCR-001",
+      "route": "/",
+      "page_entry": "src/app/page.tsx",
+      "classification": "core",
+      "page_owner_task_required": true,
+      "preview_required": true,
+      "starter_template_forbidden": true,
+      "stitch_screen_id_desktop": "a482ca45c55c4ebab0c51f2b9925ffa1",
+      "stitch_screen_id_mobile": "9f862d3f881f4bb7950e3e529b7d93f1",
+      "section_order": [
+        "hero_search",
+        "domestic_destinations_grid_6",
+        "overseas_destinations_grid_6",
+        "travel_motive_chips_6",
+        "country_safety_grid_6",
+        "recent_mate_posts_3_or_empty_state",
+        "founder_summary_cta"
+      ],
+      "key_components": [
+        "search-bar-pill",
+        "destination-card",
+        "chip",
+        "chip-active",
+        "safety-badge",
+        "mate-card",
+        "stat-card",
+        "drawer-destination-detail",
+        "drawer-safety-detail",
+        "top-nav",
+        "footer-light"
+      ],
+      "states": ["loading", "success", "empty", "error"],
+      "user_actions": [
+        "search_destination",
+        "filter_by_theme_chip",
+        "open_destination_drawer",
+        "toggle_favorite_local_storage",
+        "open_safety_drawer",
+        "click_hero_cta",
+        "click_founder_cta"
+      ],
+      "navigation": [
+        { "to_screen": "SCR-003", "trigger": "hero_cta_or_empty_state_cta" },
+        { "to_screen": "SCR-004", "trigger": "recent_mate_post_card_click" },
+        { "to_screen": "SCR-002", "trigger": "founder_summary_cta" },
+        { "to_external": "mofa_0404", "trigger": "safety_drawer_official_link" }
+      ],
+      "desktop_mobile_rules": {
+        "desktop_content_max_width_px": [1200, 1280],
+        "hero_height_ratio_desktop": "55-60%",
+        "card_grid_columns_desktop": 3,
+        "card_grid_columns_mobile": 1,
+        "section_padding_desktop_px": [64, 96],
+        "section_padding_mobile_px": [40, 64],
+        "mobile_variant_required": true
+      },
+      "forbidden_features": [
+        "destination_safety_content_crud_ui",
+        "combined_destination_safety_search",
+        "url_query_filter_sync",
+        "real_time_pricing",
+        "ratings_reviews",
+        "advertising",
+        "airbnb_trademark_elements",
+        "booking_payment_ui"
+      ]
+    },
+    {
+      "screen_id": "SCR-002",
+      "route": "/about",
+      "page_entry": "src/app/about/page.tsx",
+      "classification": "supplementary",
+      "page_owner_task_required": true,
+      "preview_required": true,
+      "starter_template_forbidden": false,
+      "stitch_screen_id_desktop": "4fb00e0ddafe48f6a5e939adde28ec83",
+      "stitch_screen_id_mobile": null,
+      "section_order": [
+        "profile_hero",
+        "trip_country_stats",
+        "intro_philosophy_2to4_paragraphs",
+        "timeline_min_6",
+        "visited_countries_chips_30",
+        "gallery_min_8",
+        "top_picks_4_with_cta"
+      ],
+      "key_components": [
+        "stat-card",
+        "split-photo-text",
+        "timeline-list",
+        "chip",
+        "gallery-grid",
+        "destination-card",
+        "button-primary"
+      ],
+      "states": ["loading", "success", "error"],
+      "user_actions": [
+        "expand_gallery_photo",
+        "click_top_pick_card",
+        "click_cta"
+      ],
+      "navigation": [
+        { "to_screen": "SCR-001", "trigger": "top_pick_card_click" },
+        { "to_screen": "SCR-003", "trigger": "cta_click" },
+        { "to_screen": "SCR-004", "trigger": "cta_click" }
+      ],
+      "desktop_mobile_rules": {
+        "desktop_content_max_width_px": [1200, 1280],
+        "hero_height_ratio_desktop": "~55%",
+        "card_grid_columns_desktop": 4,
+        "card_grid_columns_mobile": 1,
+        "section_padding_desktop_px": [64, 96],
+        "section_padding_mobile_px": [40, 64],
+        "mobile_variant_required": false,
+        "mobile_note": "Stitch 승인 범위 밖이며 구현 시 D-001 §14 반응형 규칙을 그대로 적용한다"
+      },
+      "forbidden_features": [
+        "content_crud_ui",
+        "media_upload_license_workflow",
+        "person_as_service_guarantee_imagery",
+        "airbnb_trademark_elements",
+        "booking_payment_ui"
+      ]
+    },
+    {
+      "screen_id": "SCR-003",
+      "route": "/travel-tools",
+      "page_entry": "src/app/travel-tools/page.tsx",
+      "classification": "core",
+      "page_owner_task_required": true,
+      "preview_required": true,
+      "starter_template_forbidden": false,
+      "stitch_screen_id_desktop": "7be58bc38217407faa6fefd9a8e303f8",
+      "stitch_screen_id_mobile": "3e4e85ab173c49debea20fb05e92a92f",
+      "section_order": [
+        "intro_3step_guide",
+        "tab_switcher_flight_hotel_mate",
+        "condition_input_form",
+        "summary_outbound_cta",
+        "non_transfer_notice_and_3_tips",
+        "mate_login_or_write_form_with_safety_notice"
+      ],
+      "key_components": [
+        "step-guide-3",
+        "tab-switcher",
+        "text-input",
+        "action-card-outbound",
+        "badge-safety-info-banner",
+        "tip-card",
+        "banner-warning",
+        "login-prompt-card"
+      ],
+      "states": ["loading", "success", "error", "unauthorized"],
+      "user_actions": [
+        "switch_tab",
+        "fill_condition_form",
+        "view_summary",
+        "click_outbound_link",
+        "submit_mate_post_with_agreement",
+        "click_login_prompt"
+      ],
+      "navigation": [
+        { "to_external": "google_flights_or_booking_com", "trigger": "outbound_cta_click" },
+        { "to_screen": "SCR-004", "trigger": "mate_post_submit_success" },
+        { "to_screen": "SCR-005", "trigger": "login_prompt_click" }
+      ],
+      "desktop_mobile_rules": {
+        "desktop_content_max_width_px": [1200, 1280],
+        "tab_state_isolation": true,
+        "form_columns_desktop": 2,
+        "form_columns_mobile": 1,
+        "section_padding_desktop_px": [64, 96],
+        "section_padding_mobile_px": [40, 64],
+        "mobile_variant_required": true,
+        "mobile_tabs_layout": "equal_width_no_horizontal_scroll"
+      },
+      "forbidden_features": [
+        "server_storage_of_flight_hotel_inputs",
+        "destination_or_date_query_params_on_outbound_url",
+        "real_time_flight_hotel_pricing",
+        "internal_booking_payment_ticketing_ui",
+        "airbnb_trademark_elements"
+      ]
+    },
+    {
+      "screen_id": "SCR-004",
+      "route": "/mates",
+      "page_entry": "src/app/mates/page.tsx",
+      "classification": "core",
+      "page_owner_task_required": true,
+      "preview_required": true,
+      "starter_template_forbidden": false,
+      "stitch_screen_id_desktop": "f16524ce9c2f4428b840f56e473567cf",
+      "stitch_screen_id_mobile": null,
+      "section_order": [
+        "intro_with_write_cta",
+        "filter_and_result_summary",
+        "mate_post_card_list_max_8",
+        "list_detail_split_or_drawer",
+        "application_steps_3",
+        "safety_report_block_notice_with_cta"
+      ],
+      "key_components": [
+        "button-primary",
+        "filter-panel",
+        "mate-card",
+        "detail-panel",
+        "application-message-input",
+        "report-modal-trigger",
+        "step-guide-3",
+        "banner-warning"
+      ],
+      "states": ["loading", "success", "empty", "error", "unauthorized"],
+      "user_actions": [
+        "change_filter",
+        "click_mate_card",
+        "submit_application_message",
+        "open_report_modal",
+        "sort_results"
+      ],
+      "navigation": [
+        { "to_screen": "SCR-003", "trigger": "write_cta_click" },
+        { "to_screen": "SCR-005", "trigger": "unauthorized_application_attempt" }
+      ],
+      "desktop_mobile_rules": {
+        "desktop_content_max_width_px": [1200, 1280],
+        "list_detail_split_desktop": "40/60",
+        "detail_mode_mobile": "bottom_drawer",
+        "filter_panel_desktop": "sticky_left",
+        "filter_panel_mobile": "top_sheet",
+        "section_padding_desktop_px": [64, 96],
+        "section_padding_mobile_px": [40, 64],
+        "mobile_variant_required": false,
+        "mobile_note": "Stitch 승인 범위 밖이며 구현 시 D-001 §11·§14 규칙을 그대로 적용한다"
+      },
+      "forbidden_features": [
+        "real_time_chat_video_location_share",
+        "public_contact_info_exposure",
+        "detailed_moderation_actions_beyond_status_change",
+        "ratings_reviews",
+        "airbnb_trademark_elements"
+      ]
+    },
+    {
+      "screen_id": "SCR-005",
+      "route": "/account",
+      "page_entry": "src/app/account/page.tsx",
+      "classification": "core",
+      "page_owner_task_required": true,
+      "preview_required": true,
+      "starter_template_forbidden": false,
+      "stitch_screen_id_desktop": "c60112d500414a07961b82edd72409f1",
+      "stitch_screen_id_mobile": null,
+      "section_order": [
+        "role_conditional_tabs",
+        "guest_intro_login_signup_reset_cards",
+        "guest_post_login_capability_notice",
+        "guest_security_notice",
+        "member_profile_summary_and_edit_form",
+        "member_my_posts_with_write_cta",
+        "member_applications_list_with_approve_reject",
+        "member_block_list",
+        "admin_report_list_with_status_filter_and_change",
+        "admin_outbound_url_form_https_only"
+      ],
+      "key_components": [
+        "vertical-tab-desktop",
+        "horizontal-tab-mobile",
+        "text-input",
+        "mate-card",
+        "applications-list",
+        "block-list",
+        "report-list-table",
+        "status-badge",
+        "outbound-url-form",
+        "button-primary",
+        "toast-success"
+      ],
+      "states": ["loading", "success", "empty", "error", "unauthorized"],
+      "user_actions": [
+        "login",
+        "signup",
+        "reset_password",
+        "edit_profile",
+        "click_new_mate_post_cta",
+        "approve_or_reject_application",
+        "block_or_unblock_user",
+        "filter_and_change_report_status",
+        "save_outbound_urls"
+      ],
+      "navigation": [
+        { "to_screen": "SCR-004", "trigger": "my_post_click_or_application_result" },
+        { "to_screen": "SCR-001", "trigger": "favorite_destination_click" }
+      ],
+      "desktop_mobile_rules": {
+        "desktop_content_max_width_px": [1200, 1280],
+        "sidebar_width_desktop_px": 240,
+        "content_max_width_desktop_px": 1000,
+        "tab_layout_mobile": "horizontal_scroll_top",
+        "section_padding_desktop_px": [64, 96],
+        "section_padding_mobile_px": [40, 64],
+        "mobile_variant_required": false,
+        "mobile_note": "Stitch 승인 범위 밖이며 구현 시 D-001 §14 규칙을 그대로 적용한다",
+        "role_gating": "역할에 없는 탭은 DOM에 렌더링하지 않는다"
+      },
+      "forbidden_features": [
+        "statistics_dashboard_charts_graphs",
+        "general_purpose_audit_log_ui",
+        "detailed_moderation_actions_beyond_status_change",
+        "automated_data_export_or_account_deletion_pipeline_ui",
+        "media_upload_license_workflow",
+        "airbnb_trademark_elements",
+        "booking_payment_ui"
+      ]
+    }
+  ],
+  "technical_routes": [
+    {
+      "route": "/auth/callback",
+      "page_entry": "src/app/auth/callback/route.ts",
+      "purpose": "Supabase 이메일 인증 콜백 처리",
+      "counted_as_screen": false
+    },
+    {
+      "route": "/api/*",
+      "page_entry": "src/app/api/**/route.ts",
+      "purpose": "신고·참가요청·차단 등 서버 상태 변경용 Route Handler",
+      "counted_as_screen": false
+    },
+    {
+      "route": "*",
+      "page_entry": "src/app/not-found.tsx",
+      "purpose": "404 처리 공통 화면",
+      "counted_as_screen": false
+    }
+  ],
+  "required_navigation": [
+    { "from": "SCR-001", "to": "SCR-003", "trigger": "hero_cta_or_empty_state_cta" },
+    { "from": "SCR-001", "to": "SCR-004", "trigger": "recent_mate_post_card_click" },
+    { "from": "SCR-001", "to": "SCR-002", "trigger": "founder_summary_cta" },
+    { "from": "SCR-002", "to": "SCR-001", "trigger": "top_pick_card_click" },
+    { "from": "SCR-002", "to": "SCR-003", "trigger": "cta_click" },
+    { "from": "SCR-002", "to": "SCR-004", "trigger": "cta_click" },
+    { "from": "SCR-003", "to": "SCR-004", "trigger": "mate_post_submit_success" },
+    { "from": "SCR-003", "to": "SCR-005", "trigger": "login_prompt_click" },
+    { "from": "SCR-004", "to": "SCR-003", "trigger": "write_cta_click" },
+    { "from": "SCR-004", "to": "SCR-005", "trigger": "unauthorized_application_attempt" },
+    { "from": "SCR-005", "to": "SCR-004", "trigger": "my_post_click_or_application_result" },
+    { "from": "SCR-005", "to": "SCR-001", "trigger": "favorite_destination_click" }
+  ],
+  "completion_checks": {
+    "screen_count": 5,
+    "route_uniqueness": true,
+    "page_entry_uniqueness": true,
+    "core_supplementary_split": { "core": 4, "supplementary": 1 }
+  }
+}
